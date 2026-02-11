@@ -1,5 +1,7 @@
 package clases;
 
+import javax.swing.JOptionPane;
+
 public class Carrera {
     private String codigoCarrera;
     private String nombreCarrera;
@@ -10,6 +12,8 @@ public class Carrera {
         this.nombreCarrera = nombreCarrera;
         this.cantidadClases = cantidadClases;
     }
+
+    public Carrera() {}
 
     public String getCodigoCarrera() {
         return codigoCarrera;
@@ -39,5 +43,14 @@ public class Carrera {
         return codigoCarrera + ',' +
                nombreCarrera + ',' +
                cantidadClases;
+    }
+
+    public void solicitarInformacion() {
+        this.codigoCarrera = JOptionPane.showInputDialog("Codigo de carrera: ");
+        this.nombreCarrera = JOptionPane.showInputDialog("Nombre de carrera: ");
+        this.cantidadClases = 
+            Integer.parseInt(
+                JOptionPane.showInputDialog("Cantidad de clases: ")
+            );
     }
 }

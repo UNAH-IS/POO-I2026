@@ -1,5 +1,8 @@
 import clases.Alumno;
 import clases.Carrera;
+import clases.Maestro;
+import clases.Persona;
+
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -8,12 +11,14 @@ public class App {
     private Alumno alumno2;
     private int numeros[];
     private ArrayList<Alumno> alumnos; //<Alumno> es un tipo de dato generico (raw type)
+    private ArrayList<Maestro> maestros;
     private ArrayList<Carrera> carreras;
     
 
     public App() {
         numeros = new int[5]; //Limitado a solo 5
         alumnos = new ArrayList<Alumno>(); //Sin limite
+        maestros = new ArrayList<Maestro>();
         carreras = new ArrayList<Carrera>();
 
         carreras.add(
@@ -108,16 +113,24 @@ public class App {
                     break;
                 case "2":
                     System.out.println("Agregar maestro");
+                    agregarMaestro();
                     break;
                 case "3":
                     System.out.println("Agregar carrera");
+                    agregarCarrera();
                     break;
                 case "4":
                     System.out.println("Listar alumnos");
-                    listarAlumnos();
+                    listarPersonas(alumnos, "Lista de alumnos");
                     break;
                 case "5":
                     System.out.println("Listar maestros");
+                    listarPersonas(maestros, "Lista de maestros");
+                    break;
+                case "6": 
+                    System.out.println("Listar carreras");
+                    listarCarreras();
+                    break;
                 default:
                     JOptionPane.showMessageDialog(
                         null,
@@ -147,34 +160,51 @@ public class App {
 
     public void agregarAlumno() {
         Alumno a = new Alumno();
-        a.setCuenta(JOptionPane.showInputDialog("Cuenta: "));
-        a.setNombre(JOptionPane.showInputDialog("Nombre: "));
-        a.setApellido(JOptionPane.showInputDialog("Apellido: "));
-        a.setEdad(
-            Integer.parseInt(
-                JOptionPane.showInputDialog("Edad: ")
-            )
-        );
-        a.setGenero(JOptionPane.showInputDialog("Genero: "));
-        a.setPromedio(
-            Double.parseDouble(
-                JOptionPane.showInputDialog("Promedio: ")
-            )
-        );
-
-        String listaCarreras = "Carreras disponibles:\n";
-        for (int i = 0; i < carreras.size(); i++) {
-            listaCarreras += (i+1) + ".- " + carreras.get(i).getNombreCarrera() + "\n";
-        }
-
-        String carreraSeleccionada = JOptionPane.showInputDialog(listaCarreras);
-        int indiceCarreraSeccionada = Integer.parseInt(carreraSeleccionada) - 1;
-        a.setCarrera(carreras.get(indiceCarreraSeccionada));
-
-        System.out.println(" Carrera seleccionada: " + carreraSeleccionada);
+        a.solicitarInformacion(carreras);
         alumnos.add(a);
     }
 
+    public void agregarMaestro() {
+        Maestro m = new Maestro();
+        m.solicitarInformacion(carreras);
+        maestros.add(m);
+    }
+
+    public void agregarCarrera() {
+        Carrera c = new Carrera();
+        c.solicitarInformacion();
+        carreras.add(c);
+    }
+
+    public void listarPersonas(ArrayList<? extends Persona> personas, String titulo) {
+        String listadoPersonas = titulo + ":\n";
+        for (int i = 0; i < personas.size(); i++) {
+            listadoPersonas += (i+1) + ".- " + personas.get(i).toString() + "\n";
+        }
+
+        JOptionPane.showMessageDialog(
+            null,   
+            listadoPersonas,
+            titulo,
+            JOptionPane.INFORMATION_MESSAGE
+        );
+    }
+
+    public void listarCarreras() {
+        String listaCarreras = "Listado de carreras:\n";
+        for (int i = 0; i < carreras.size(); i++) {
+            listaCarreras += (i+1) + ".- " + carreras.get(i).toString() + "\n";
+        }
+
+        JOptionPane.showMessageDialog(
+            null,   
+            listaCarreras,
+            "Carreras",
+            JOptionPane.INFORMATION_MESSAGE
+        );
+    }
+
+    @Deprecated
     public void listarAlumnos() {
         String listadoAlumnos = "Listado de Alumnos:\n";
         for (int i = 0; i < alumnos.size(); i++) {
@@ -185,6 +215,21 @@ public class App {
             null,   
             listadoAlumnos,
             "Alumnos",
+            JOptionPane.INFORMATION_MESSAGE
+        );
+    }
+
+    @Deprecated
+    public void listarMaestros() {
+        String listadoMaestros = "Listado de Maestros:\n";
+        for (int i = 0; i < maestros.size(); i++) {
+            listadoMaestros += (i+1) + ".- " + maestros.get(i).toString() + "\n";
+        }
+
+        JOptionPane.showMessageDialog(
+            null,   
+            listadoMaestros,
+            "Maestros",
             JOptionPane.INFORMATION_MESSAGE
         );
     }

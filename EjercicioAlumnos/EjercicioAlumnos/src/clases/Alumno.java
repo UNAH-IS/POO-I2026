@@ -1,5 +1,8 @@
 package clases;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 public class Alumno extends Persona {
     // int x;  //modificador de acceso default: accesible dentro del mismo paquete 
     // public int y; //modificador de acceso public: accesible desde cualquier clase
@@ -63,6 +66,16 @@ public class Alumno extends Persona {
         return cuenta + ',' +
                 promedio + ',' +
                 super.toString();
+    }
+
+    @Override
+    public void solicitarInformacion(ArrayList<Carrera> carreras) {
+        this.cuenta = JOptionPane.showInputDialog("Cuenta: ");
+        this.promedio = 
+            Double.parseDouble(
+                JOptionPane.showInputDialog("Promedio: ")
+            );
+        super.solicitarInformacion(carreras);
     }
 
     // public void mostrarInformacion() {

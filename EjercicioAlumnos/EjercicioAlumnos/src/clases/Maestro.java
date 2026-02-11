@@ -1,5 +1,8 @@
 package clases;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 public class Maestro extends Persona {
     private String codigoEmpleado;
     private double sueldo;
@@ -9,6 +12,8 @@ public class Maestro extends Persona {
         this.codigoEmpleado = codigoEmpleado;
         this.sueldo = sueldo;
     }
+
+    public Maestro() {}
 
     public String getCodigoEmpleado() {
         return codigoEmpleado;
@@ -33,5 +38,13 @@ public class Maestro extends Persona {
                super.toString();
     }
 
-    
+    @Override
+    public void solicitarInformacion(ArrayList<Carrera> carreras) {
+        this.codigoEmpleado = JOptionPane.showInputDialog("Codigo de empleado: ");
+        this.sueldo = 
+            Double.parseDouble(
+                JOptionPane.showInputDialog("Sueldo: ")
+            );
+        super.solicitarInformacion(carreras);
+    }
 }

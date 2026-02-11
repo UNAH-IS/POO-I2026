@@ -1,5 +1,8 @@
 package clases;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 public class Persona extends Object {
     protected String nombre; //protected: accesible dentro del mismo paquete y en las subclases
     protected String apellido;
@@ -78,5 +81,26 @@ public class Persona extends Object {
                carrera + ',' +
                edad + ',' +
                genero;
+    }
+
+    public void solicitarInformacion(ArrayList<Carrera> carreras) {
+        this.nombre = JOptionPane.showInputDialog("Nombre: ");
+        this.apellido = JOptionPane.showInputDialog("Apellido: ");
+        this.edad = Integer.parseInt(
+                JOptionPane.showInputDialog("Edad: ")
+            );
+        this.genero = JOptionPane.showInputDialog("Genero: ");
+
+        //Solicitar información de la carrera
+        String listaCarreras = "Carreras disponibles:\n";
+        for (int i = 0; i < carreras.size(); i++) {
+            listaCarreras += (i+1) + ".- " + carreras.get(i).getNombreCarrera() + "\n";
+        }
+
+        String carreraSeleccionada = JOptionPane.showInputDialog(listaCarreras);
+        int indiceCarreraSeccionada = Integer.parseInt(carreraSeleccionada) - 1;
+        this.carrera = carreras.get(indiceCarreraSeccionada);
+
+        System.out.println(" Carrera seleccionada: " + carreraSeleccionada);
     }
 }
