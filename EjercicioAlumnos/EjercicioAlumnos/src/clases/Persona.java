@@ -1,9 +1,10 @@
 package clases;
 
+import interfaces.Humano;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-public class Persona extends Object {
+public abstract class Persona extends Object implements Humano {
     protected String nombre; //protected: accesible dentro del mismo paquete y en las subclases
     protected String apellido;
     protected Carrera carrera; // Asociación/Composición
@@ -62,15 +63,8 @@ public class Persona extends Object {
         this.genero = genero;
     }
 
-    public void mostrarInformacion() {
-        System.out.println(
-            "Nombre: " + this.nombre +
-            ", Apellido: " + this.apellido +
-            ", Carrera: " + this.carrera +
-            ", Edad: " + this.edad +
-            ", Genero: " + this.genero
-        );
-    }
+    //Los métodos abstractos son aquellos que no tienen una implementación, es decir, no tienen un cuerpo, solo se define su firma (nombre, parámetros y tipo de retorno)
+    public abstract void mostrarInformacion();
 
     //Sobrescritura de metodos (Polimorfismo): es volver a escribir un metodo heredado de la clase padre
     // para darle una nueva funcionalidad en la clase hija
@@ -83,7 +77,7 @@ public class Persona extends Object {
                genero;
     }
 
-    public void solicitarInformacion(ArrayList<Carrera> carreras) {
+    public  void solicitarInformacion(ArrayList<Carrera> carreras) {
         this.nombre = JOptionPane.showInputDialog("Nombre: ");
         this.apellido = JOptionPane.showInputDialog("Apellido: ");
         this.edad = Integer.parseInt(
@@ -103,4 +97,25 @@ public class Persona extends Object {
 
         System.out.println(" Carrera seleccionada: " + carreraSeleccionada);
     }
+
+    @Override
+    public void caminar() {
+        System.out.println("La persona esta caminando");
+    }
+
+    @Override
+    public void hablar() {
+        System.out.println("La persona esta hablando");
+    }
+
+    @Override
+    public void dormir() {
+        System.out.println("La persona esta durmiendo");
+    }
+
+    @Override
+    public void comer() {
+        System.out.println("La persona esta comiendo");
+    }
+
 }

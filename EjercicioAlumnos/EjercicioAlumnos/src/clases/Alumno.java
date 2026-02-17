@@ -32,7 +32,6 @@ public class Alumno extends Persona {
         // this.carrera = carrera;
         // this.edad = edad;
         // this.genero = genero;
-
         
     }
 
@@ -76,6 +75,19 @@ public class Alumno extends Persona {
                 JOptionPane.showInputDialog("Promedio: ")
             );
         super.solicitarInformacion(carreras);
+    }
+
+    @Override
+    public void mostrarInformacion() {
+        System.out.println(
+            "Cuenta: " + this.cuenta +
+            ", Promedio: " + this.promedio +
+            ", Nombre: " + this.nombre +
+            ", Apellido: " + this.apellido +
+            ", Carrera: " + this.carrera +
+            ", Edad: " + this.edad +
+            ", Genero: " + this.genero
+        );
     }
 
     // public void mostrarInformacion() {

@@ -47,4 +47,17 @@ public class Maestro extends Persona {
             );
         super.solicitarInformacion(carreras);
     }
+
+    @Override
+    public void mostrarInformacion() {
+        System.out.println(
+            "Codigo de empleado: " + this.codigoEmpleado +
+            ", Sueldo: " + this.sueldo +
+            ", Nombre: " + this.nombre +
+            ", Apellido: " + this.apellido +
+            ", Carrera: " + this.carrera +
+            ", Edad: " + this.edad +
+            ", Genero: " + this.genero
+        );
+    }
 }

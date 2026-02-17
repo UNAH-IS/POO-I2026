@@ -2,7 +2,6 @@ import clases.Alumno;
 import clases.Carrera;
 import clases.Maestro;
 import clases.Persona;
-
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -13,6 +12,8 @@ public class App {
     private ArrayList<Alumno> alumnos; //<Alumno> es un tipo de dato generico (raw type)
     private ArrayList<Maestro> maestros;
     private ArrayList<Carrera> carreras;
+
+    private Persona persona1;
     
 
     public App() {
@@ -20,6 +21,16 @@ public class App {
         alumnos = new ArrayList<Alumno>(); //Sin limite
         maestros = new ArrayList<Maestro>();
         carreras = new ArrayList<Carrera>();
+        // persona1 = new Persona(); // No se puede instanciar una clase abstracta
+        persona1 = new Alumno(
+            "20210001",
+            "Pedro",
+            "Ramirez",
+            null,
+            20,
+            "Masculino",
+            8.5
+        );
 
         carreras.add(
             new Carrera(
@@ -78,6 +89,27 @@ public class App {
                 7.8
             )
         );
+
+        System.out.println("---------Pruebas de polimorfismo---------");
+        invocarToString(persona1);
+        invocarToString(alumno1);
+        invocarToString(new Maestro(
+            "E001",
+            3500.00,
+            "Carlos",
+            "Gomez",
+            null,
+            45,
+            "Masculino" 
+        ));
+        System.out.println("---------Fin Pruebas de polimorfismo---------");
+
+        //Esto no funcionaria porque la clase Carrera no hereda de Persona, por lo tanto no se puede invocar el metodo toString() de la clase Persona
+        // invocarToString(new Carrera(
+        //     "C004",
+        //     "Ingenieria Civil",
+        //     42
+        // ));
 
         for (int i = 0; i < alumnos.size(); i++) {
             System.out.println(alumnos.get(i).toString());
@@ -232,6 +264,10 @@ public class App {
             "Maestros",
             JOptionPane.INFORMATION_MESSAGE
         );
+    }
+
+    public void invocarToString(Persona p) {
+        System.out.println(p.toString());
     }
 
     public static void main(String[] args) throws Exception {
