@@ -46,21 +46,14 @@ public class AlumnosController implements Initializable{
     @FXML private Button btnActualizar;
     @FXML private Button btnEliminar;
 
-    private ObservableList<Carrera> carreras;
     private ObservableList<Alumno> alumnos;
 
     public AlumnosController() {
-        carreras = FXCollections.observableArrayList();
         alumnos = FXCollections.observableArrayList();
-        carreras.add(new Carrera("ISC", "Ingeniería en Sistemas Computacionales", 56));
-        carreras.add(new Carrera("IQ", "Ingeniería Quimica", 56));
-        carreras.add(new Carrera("MM", "Matematicas", 56));
-        carreras.add(new Carrera("FS", "Fisica", 56));
-
-        alumnos.add(new Alumno("20210001", "Juan", "Perez", carreras.get(0), 20, "Masculino", 8.5, new Date()));
-        alumnos.add(new Alumno("20210002", "Maria", "Gomez", carreras.get(1), 21, "Femenino", 9.0, new Date()));
-        alumnos.add(new Alumno("20210003", "Carlos", "Lopez", carreras.get(2), 22, "Masculino", 7.5, new Date()));
-        alumnos.add(new Alumno("20210004", "Ana", "Martinez", carreras.get(3), 23, "Femenino", 8.0, new Date()));
+        alumnos.add(new Alumno("20210001", "Juan", "Perez", App.carreras.get(0), 20, "Masculino", 8.5, new Date()));
+        alumnos.add(new Alumno("20210002", "Maria", "Gomez", App.carreras.get(1), 21, "Femenino", 9.0, new Date()));
+        alumnos.add(new Alumno("20210003", "Carlos", "Lopez", App.carreras.get(2), 22, "Masculino", 7.5, new Date()));
+        alumnos.add(new Alumno("20210004", "Ana", "Martinez", App.carreras.get(3), 23, "Femenino", 8.0, new Date()));
     }
 
     @FXML
@@ -232,10 +225,19 @@ public class AlumnosController implements Initializable{
         btnGuardar.setDisable(true);
     }
 
+    @FXML
+    public void volver() {
+        try {
+            App.setRoot("Principal");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("Finalizo la carga del FXML, es decir se crearon todos los controles");
-        cmbCarrera.setItems(carreras);
+        cmbCarrera.setItems(App.carreras);
         lstAlumnos.setItems(alumnos);
         tblAlumnos.setItems(alumnos);
 

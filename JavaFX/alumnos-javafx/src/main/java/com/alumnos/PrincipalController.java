@@ -25,4 +25,13 @@ public class PrincipalController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    public void abrirFormularioCarreras() {
+        try {
+            App.setRoot("Carreras");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

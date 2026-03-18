@@ -20,7 +20,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="706.0" prefWidth="664.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.alumnos.AlumnosController">
    <children>
       <SplitPane dividerPositions="0.4105621805792163" layoutX="98.0" layoutY="288.0" orientation="VERTICAL" prefHeight="502.0" prefWidth="789.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -104,6 +103,7 @@
                         <Button fx:id="btnActualizar" disable="true" mnemonicParsing="false" onAction="#actualizarAlumno" prefHeight="26.0" prefWidth="149.0" text="Actualizar" />
                         <Button fx:id="btnEliminar" disable="true" mnemonicParsing="false" onAction="#eliminarAlumno" prefHeight="26.0" prefWidth="142.0" text="Eliminar" />
                         <Button mnemonicParsing="false" onAction="#salir" prefHeight="26.0" prefWidth="142.0" text="Salir" />
+                        <Button mnemonicParsing="false" onAction="#volver" prefHeight="26.0" prefWidth="142.0" text="Volver" />
                      </children>
                   </VBox>
                </children>

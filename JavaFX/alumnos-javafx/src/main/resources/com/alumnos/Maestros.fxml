@@ -74,7 +74,7 @@
                               <Insets right="6.0" />
                            </GridPane.margin>
                         </Label>
-                        <TextField fx:id="txtCuenta" GridPane.columnIndex="1" />
+                        <TextField fx:id="txtNumeroEmpleado" GridPane.columnIndex="1" />
                         <TextField fx:id="txtNombre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <TextField fx:id="txtApellido" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="CENTER">
@@ -89,24 +89,25 @@
                         </HBox>
                         <ComboBox fx:id="cmbCarrera" prefHeight="26.0" prefWidth="254.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                         <TextField fx:id="txtEdad" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <TextField fx:id="txtPromedio" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <TextField fx:id="txtSueldo" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                         <Label text="Fecha de nacimiento:" GridPane.rowIndex="7" />
                         <DatePicker fx:id="dtpFechaNacimiento" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                      </children>
                   </GridPane>
                   <VBox prefHeight="200.0" prefWidth="142.0" spacing="7.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
                      <children>
-                        <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#guardarAlumno" prefHeight="26.0" prefWidth="145.0" text="Guardar" />
-                        <Button fx:id="btnActualizar" disable="true" mnemonicParsing="false" onAction="#actualizarAlumno" prefHeight="26.0" prefWidth="149.0" text="Actualizar" />
-                        <Button fx:id="btnEliminar" disable="true" mnemonicParsing="false" onAction="#eliminarAlumno" prefHeight="26.0" prefWidth="142.0" text="Eliminar" />
+                        <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#guardarMaestro" prefHeight="26.0" prefWidth="145.0" text="Guardar" />
+                        <Button fx:id="btnActualizar" disable="true" mnemonicParsing="false" onAction="#actualizarMaestro" prefHeight="26.0" prefWidth="149.0" text="Actualizar" />
+                        <Button fx:id="btnEliminar" disable="true" mnemonicParsing="false" onAction="#eliminarMaestro" prefHeight="26.0" prefWidth="142.0" text="Eliminar" />
                         <Button mnemonicParsing="false" onAction="#salir" prefHeight="26.0" prefWidth="142.0" text="Salir" />
+                        <Button mnemonicParsing="false" onAction="#volver" prefHeight="26.0" prefWidth="142.0" text="Volver" />
                      </children>
                   </VBox>
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <TableView fx:id="tblAlumnos" layoutX="-209.0" layoutY="-124.0" prefHeight="412.8" prefWidth="662.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <TableView fx:id="tblMaestros" layoutX="-209.0" layoutY="-124.0" prefHeight="412.8" prefWidth="662.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
         </items>
