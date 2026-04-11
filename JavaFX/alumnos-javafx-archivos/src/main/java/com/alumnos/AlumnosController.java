@@ -1,7 +1,9 @@
 package com.alumnos;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.net.URL;
 import java.nio.Buffer;
 import java.time.Instant;
@@ -52,26 +54,48 @@ public class AlumnosController implements Initializable{
     private ObservableList<Alumno> alumnos;
 
     public AlumnosController() {
-        cargarAlumnos();
         alumnos = FXCollections.observableArrayList();
-        alumnos.add(new Alumno("20210001", "Juan", "Perez", App.carreras.get(0), 20, "Masculino", 8.5, new Date()));
-        alumnos.add(new Alumno("20210002", "Maria", "Gomez", App.carreras.get(1), 21, "Femenino", 9.0, new Date()));
-        alumnos.add(new Alumno("20210003", "Carlos", "Lopez", App.carreras.get(2), 22, "Masculino", 7.5, new Date()));
-        alumnos.add(new Alumno("20210004", "Ana", "Martinez", App.carreras.get(3), 23, "Femenino", 8.0, new Date()));
+        cargarAlumnos();
+        // alumnos.add(new Alumno("20210001", "Juan", "Perez", App.carreras.get(0), 20, "Masculino", 8.5, new Date()));
+        // alumnos.add(new Alumno("20210002", "Maria", "Gomez", App.carreras.get(1), 21, "Femenino", 9.0, new Date()));
+        // alumnos.add(new Alumno("20210003", "Carlos", "Lopez", App.carreras.get(2), 22, "Masculino", 7.5, new Date()));
+        // alumnos.add(new Alumno("20210004", "Ana", "Martinez", App.carreras.get(3), 23, "Femenino", 8.0, new Date()));
     }
 
     //Cargar alumnos desde el archivo data.csv
     public void cargarAlumnos() {
         try {
-            BufferedReader br = new BufferedReader(new FileReader("data.csv"));
+            BufferedReader br = new BufferedReader(new FileReader("alumnos.csv"));
             String linea;
             while ((linea = br.readLine()) != null) {
-                System.out.println(linea);
+                String partes[] = linea.split(",");
+                //Buscar carrera por el ID
+                Carrera carrera = null;
+                for (Carrera c : App.carreras) {
+                    if (c.getCodigoCarrera().equals(partes[5])) {
+                        carrera = c;
+                        break;
+                    }
+                }
+
+                alumnos.add(
+                    new Alumno(
+                        partes[0], 
+                        partes[1], 
+                        partes[2], 
+                        carrera, 
+                        Integer.parseInt(partes[3]), 
+                        partes[4].equals("M") ? "Masculino" : "Femenino", 
+                        Double.parseDouble(partes[6]), 
+                        Date.from(Instant.from((LocalDate.parse(partes[7])).atStartOfDay(ZoneId.systemDefault())))
+                    ));
+                
             }
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
     }
 
     @FXML
@@ -107,7 +131,32 @@ public class AlumnosController implements Initializable{
         );
 
         alumnos.add(a);
+        guardarAlumnoCSV(a);
         limpiarComponentes();
+    }
+
+    public void guardarAlumnoCSV(Alumno alumno) {
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter("alumnos.csv", true)); //El true es para agregar al final del archivo, si no se pone se sobreescribe el archivo    
+            bw.newLine();
+            bw.write(alumno.toCSV());
+            bw.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void actualizarAlumnoCSV() {
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter("alumnos.csv")); //Sin el true para sobreescribir el archivo
+            for (Alumno alumno : alumnos) {
+                bw.write(alumno.toCSV());
+                bw.newLine();
+            }
+            bw.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -129,6 +178,7 @@ public class AlumnosController implements Initializable{
             alumnoSeleccionado.setFechaNacimiento(Date.from(instant));
             lstAlumnos.refresh(); //Refresca la vista de la lista para mostrar los cambios
             limpiarComponentes();
+            actualizarAlumnoCSV();
         }
     }
 

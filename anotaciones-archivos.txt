@@ -1,0 +1,17 @@
+Gestion de archivos en Java:
+    La clase principal para manejar archivos en Java es la clase File.
+    Esta clase permite crear, eliminar, y obtener información sobre archivos y directorios.
+
+Formas de leer y escribir archivos/flujos:
+    FLujos basados en caracteres: Se utilizan para leer y escribir texto. Ejemplos incluyen FileReader, BufferedReader, FileWriter, BufferedWriter, PrintWriter.
+        Para leer archivos, se pueden usar clases como FileReader, BufferedReader, o Scanner.
+        Para escribir archivos, se pueden usar clases como FileWriter, BufferedWriter, o PrintWriter.
+    
+    Flujos basados en bytes: Se utilizan para leer y escribir datos binarios. Ejemplos incluyen FileInputStream, FileOutputStream, BufferedInputStream, BufferedOutputStream.
+        Para leer archivos, se pueden usar clases como FileInputStream o BufferedInputStream.
+        Para escribir archivos, se pueden usar clases como FileOutputStream o BufferedOutputStream.
+
+    Flujos de objetos: Se utilizan para leer y escribir objetos Java. Ejemplos incluyen ObjectInputStream y ObjectOutputStream.
+        Para leer objetos, se puede usar ObjectInputStream.
+        Para escribir objetos, se puede usar ObjectOutputStream.
+

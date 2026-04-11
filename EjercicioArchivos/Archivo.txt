@@ -1,0 +1,2 @@
+Hola, este es un nuevo archivo creado con BufferedWriter.
+Esta es otra línea en el archivo.
